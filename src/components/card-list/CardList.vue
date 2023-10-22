@@ -1,19 +1,13 @@
-<script>
+<script setup>
 import Card from "../card/CardView.vue";
 
-export default {
-  props: {
-    monsters: {
-      type: Object,
-      required: true,
-    },
-  },
-  components: { Card },
-};
+const props = defineProps({
+  monsters: Object,
+});
 </script>
 
 <template>
-  <div v-for="monster in monsters" >
+  <div v-for="monster in monsters">
     <Card :monster="monster" />
   </div>
 </template>

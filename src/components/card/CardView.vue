@@ -1,12 +1,7 @@
-<script>
-export default {
-  props: {
-    monster: {
-      type: Object,
-      required: true,
-    },
-  },
-};
+<script setup>
+const props = defineProps({
+  monster: Object,
+});
 </script>
 
 <template>

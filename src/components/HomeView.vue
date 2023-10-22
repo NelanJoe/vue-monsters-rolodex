@@ -1,41 +1,33 @@
-<script>
+<script setup>
+import { ref, onMounted, computed, reactive } from "vue";
+import { getData } from "../utils/data.utils";
+
 import CardList from "./card-list/CardList.vue";
 
-export default {
-  data() {
-    return {
-      search: "",
-      monsters: [],
-    };
-  },
-  methods: {
-    async getMonsters() {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users"
-      );
-      const data = await response.json();
-      this.monsters = data;
-    },
-  },
-  mounted() {
-    this.getMonsters();
-  },
-  computed: {
-    filterMonsters() {
-      return this.monsters.filter((monster) =>
-        monster.name.toLowerCase().includes(this.search.toLowerCase())
-      );
-    },
-  },
-  components: { CardList },
+const monsters = reactive([]);
+const search = ref("");
+
+const fetchUsers = async () => {
+  const users = await getData("https://jsonplaceholder.typicode.com/users");
+  monsters.value = users;
 };
 
+onMounted(() => {
+  fetchUsers();
+});
+
+const filteredMonsters = computed(() => {
+  return monsters.value?.filter((monster) =>
+    monster?.name?.toLowerCase().includes(search.value.toLowerCase())
+  );
+});
 </script>
 
 <template>
   <h1 class="text-white text-8xl font-semibold text-center font-bigelow">
     Monsters Rolodex
   </h1>
+
   <div class="flex justify-center my-8">
     <input
       type="search"
@@ -44,7 +36,13 @@ export default {
       v-model="search"
     />
   </div>
-  <div class="flex flex-wrap justify-center gap-5 my-10">
-    <CardList :monsters="filterMonsters" />
+  <div
+    class="flex flex-wrap justify-center gap-5 my-10"
+    v-if="filteredMonsters?.length"
+  >
+    <CardList :monsters="filteredMonsters" />
+  </div>
+  <div v-else class="flex flex-wrap justify-center gap-5 my-10 text-white">
+    <p>Not Found Monster "{{ search }}"</p>
   </div>
 </template>
