@@ -1,9 +1,3 @@
-<script setup>
-const props = defineProps({
-  monster: Object,
-});
-</script>
-
 <template>
   <div class="card">
     <img
@@ -20,6 +14,15 @@ const props = defineProps({
     </a>
   </div>
 </template>
+
+<script setup>
+const props = defineProps({
+  monster: {
+    type: Object,
+    required: true,
+  },
+});
+</script>
 
 <style lang="postcss">
 .card {

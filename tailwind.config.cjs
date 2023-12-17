@@ -4,9 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        poppins: ["Poppins", "sans-serif"],
+        sans: ["Plus Jakarta Sans Variable", "sans-serif"],
         bigelow: ["Bigelow Rules", "cursive"],
-        rubik: ["Rubik", "sans-serif"],
       },
     },
   },

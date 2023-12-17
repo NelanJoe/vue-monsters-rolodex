@@ -1,5 +1,10 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from "vue";
 
-createApp(App).mount('#app')
+import App from "./App.vue";
+import router from "./router";
+
+import "./style.css";
+import "@fontsource-variable/plus-jakarta-sans";
+import "@fontsource/bigelow-rules";
+
+createApp(App).use(router).mount("#app");

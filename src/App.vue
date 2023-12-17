@@ -1,9 +1,9 @@
 <script setup>
-import HomeView from "./components/HomeView.vue";
+import { RouterView } from "vue-router";
 </script>
 
 <template>
-  <div class="max-w-7xl mx-4 md:mx-auto mt-10">
-    <HomeView />
-  </div>
+  <main class="max-w-[1400px] mx-4 md:mx-auto my-10">
+    <RouterView />
+  </main>
 </template>
